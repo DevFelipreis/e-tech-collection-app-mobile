@@ -1,4 +1,4 @@
-package com.example.e_tech_collection_app_mobile
+package com.example.myapplication
 
 import org.junit.Test
 
