@@ -19,6 +19,5 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "e-tech-collection-app-mobile"
+rootProject.name = "My Application"
 include(":app")
- 
