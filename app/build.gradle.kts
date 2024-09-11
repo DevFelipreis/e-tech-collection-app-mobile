@@ -4,11 +4,11 @@ plugins {
 }
 
 android {
-    namespace = "com.example.e_techcollectionapp"
-    compileSdk = 35
+    namespace = "com.example.etechcollectionapp"
+    compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.example.e_techcollectionapp"
+        applicationId = "com.example.etechcollectionapp"
         minSdk = 27
         targetSdk = 34
         versionCode = 1
@@ -50,6 +50,7 @@ android {
 }
 
 dependencies {
+
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
@@ -65,7 +66,4 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
-
-
-    implementation("androidx.compose.material3:material3:1.0.0")
 }

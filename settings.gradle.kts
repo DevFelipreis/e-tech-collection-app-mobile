@@ -19,5 +19,6 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "e-TechCollectionApp"
+rootProject.name = "eTechCollectionApp"
 include(":app")
+ 
