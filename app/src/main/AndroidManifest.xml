@@ -26,9 +26,9 @@
 
 
         <activity
-            android:name=".Feed"
+            android:name=".Login"
             android:exported="true"
-            android:label="Feed"
+            android:label="Login"
             android:theme="@style/Theme.ETechCollectionApp" />
 
     </application>

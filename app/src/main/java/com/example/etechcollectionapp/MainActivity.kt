@@ -48,7 +48,7 @@ fun SplashScreen() {
 
     LaunchedEffect(Unit) {
         delay(2000)
-        val intent = Intent(context, Feed::class.java)
+        val intent = Intent(context, Login::class.java)
         context.startActivity(intent)
         (context as ComponentActivity).finish()
     }
@@ -81,6 +81,7 @@ fun SplashScreen() {
         )
     }
 }
+
 
 @Preview(showBackground = true)
 @Composable
