@@ -22,7 +22,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             ETechCollectionAppTheme {
-                // A Surface container using the 'background' color from the theme
+
                 Surface(
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
@@ -48,7 +48,7 @@ class MainActivity : ComponentActivity() {
             verticalArrangement = Arrangement.Center
         ) {
             Button(onClick = { navigateToFeed() }) {
-                Text("Ir para Lista de Negócios")
+                Text("Feed")
             }
         }
     }

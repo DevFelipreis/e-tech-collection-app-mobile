@@ -1,5 +1,6 @@
 package com.example.e_techcollectionapp
 
+import DrawerContent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -25,6 +26,7 @@ import com.example.e_techcollectionapp.ui.theme.White
 import com.example.e_techcollectionapp.ui.theme.Yellow
 import com.example.etechcollectionapp.R
 import kotlinx.coroutines.launch
+
 
 class Feed : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -146,19 +148,6 @@ fun baseboard() {
             contentDescription = "Rodapé",
             modifier = Modifier.fillMaxWidth()
         )
-    }
-}
-
-@Composable
-fun DrawerContent(onCloseDrawer: () -> Unit) {
-    Column(modifier = Modifier.padding(16.dp)) {
-        Text("Option 1", modifier = Modifier.padding(8.dp))
-        Text("Option 2", modifier = Modifier.padding(8.dp))
-        Text("Option 3", modifier = Modifier.padding(8.dp))
-        Spacer(modifier = Modifier.height(16.dp))
-        Button(onClick = onCloseDrawer) {
-            Text("Fechar Menu")
-        }
     }
 }
 
