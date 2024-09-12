@@ -1,4 +1,4 @@
-package com.example.e_techcollectionapp.ui.theme
+package com.example.etechcollectionapp.ui.theme
 
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.lightColorScheme

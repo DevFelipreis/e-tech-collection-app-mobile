@@ -1,7 +1,11 @@
-package com.example.e_techcollectionapp
+package com.example.etechcollectionapp
+
 
 import DrawerContent
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
@@ -26,6 +30,7 @@ import com.example.e_techcollectionapp.ui.theme.White
 import com.example.e_techcollectionapp.ui.theme.Yellow
 import com.example.etechcollectionapp.R
 import kotlinx.coroutines.launch
+import androidx.compose.ui.platform.LocalContext
 
 
 class Feed : ComponentActivity() {
@@ -205,28 +210,72 @@ fun BusinessCard(business: Business) {
                 horizontalArrangement = Arrangement.SpaceEvenly,
                 modifier = Modifier.fillMaxWidth()
             ) {
+                // Estado para itens aceitos
+                var showItems by remember { mutableStateOf(false) }
+                val acceptedItems = listOf("Celular", "Computador", "Bateria")
+
                 Button(
-                    onClick = { /* Lógica para mostrar itens aceitos */ },
+                    onClick = { showItems = !showItems },
                     colors = ButtonDefaults.buttonColors(containerColor = Yellow),
                     modifier = Modifier.weight(1f)
                 ) {
-                    Text("Aceita", color = DarkGreen)
+                    Text(text = "Aceita", color = DarkGreen)
                 }
-                Spacer(modifier = Modifier.width(8.dp))
-                Button(
-                    onClick = { /* Lógica para ver no mapa */ },
-                    colors = ButtonDefaults.buttonColors(containerColor = Yellow),
-                    modifier = Modifier.weight(1f)
-                ) {
-                    Text("Local", color = DarkGreen)
+
+                if (showItems) {
+                    Column {
+                        acceptedItems.forEach { item ->
+                            Text(text = item)
+                        }
+                    }
                 }
+
                 Spacer(modifier = Modifier.width(8.dp))
+
+                val context = LocalContext.current
+                val googleMapsIntentUri = Uri.parse("geo:0,0?q=${business.address}")
+
                 Button(
-                    onClick = { /* Lógica para mostrar horário de funcionamento */ },
+                    onClick = {
+                        val intent = Intent(Intent.ACTION_VIEW, googleMapsIntentUri).apply {
+                            setPackage("com.google.android.apps.maps")
+                        }
+
+                        if (intent.resolveActivity(context.packageManager) != null) {
+                            context.startActivity(intent)
+                        } else {
+                            Toast.makeText(
+                                context,
+                                "Google Maps não está disponível",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        }
+                    },
                     colors = ButtonDefaults.buttonColors(containerColor = Yellow),
                     modifier = Modifier.weight(1f)
                 ) {
-                    Text("Horários", color = DarkGreen)
+                    Text("Mapa", color = DarkGreen)
+                }
+
+                Spacer(modifier = Modifier.width(8.dp))
+
+                var showSchedule by remember { mutableStateOf(false) }
+                val schedule = listOf("Seg-Sex: 9h às 18h", "Sáb: 9h às 13h")
+
+                Button(
+                    onClick = { showSchedule = !showSchedule },
+                    colors = ButtonDefaults.buttonColors(containerColor = Yellow),
+                    modifier = Modifier.weight(1f)
+                ) {
+                    Text(text = "Horário", color = DarkGreen)
+                }
+
+                if (showSchedule) {
+                    Column {
+                        schedule.forEach { time ->
+                            Text(text = time)
+                        }
+                    }
                 }
             }
         }
