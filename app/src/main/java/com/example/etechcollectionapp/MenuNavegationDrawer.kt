@@ -19,6 +19,7 @@ import androidx.compose.material.icons.filled.Place
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Delete
 import com.example.e_techcollectionapp.ui.theme.DarkGreen
+import com.example.e_techcollectionapp.ui.theme.Yellow
 import com.example.etechcollectionapp.R
 
 @Composable
@@ -43,7 +44,11 @@ fun DrawerContent(onCloseDrawer: () -> Unit) {
         )
         Text(
             "Minha Conta",
-            style = TextStyle(fontSize = 21.sp, fontWeight = FontWeight.Normal, color = Color.White),
+            style = TextStyle(
+                fontSize = 21.sp,
+                fontWeight = FontWeight.Normal,
+                color = Color.White
+            ),
             modifier = Modifier.padding(start = 8.dp)
         )
         Spacer(modifier = Modifier.height(16.dp))
@@ -59,7 +64,9 @@ fun DrawerContent(onCloseDrawer: () -> Unit) {
         ) {
             Button(
                 onClick = onCloseDrawer,
-                modifier = Modifier.height(32.dp)
+                colors = ButtonDefaults.buttonColors(containerColor = DarkGreen),
+                modifier = Modifier
+
             ) {
                 Text("Sair")
             }
@@ -78,7 +85,12 @@ fun DrawerContent(onCloseDrawer: () -> Unit) {
 @Composable
 fun DrawerOption(text: String, icon: ImageVector) {
     Row(modifier = Modifier.padding(8.dp)) {
-        Icon(imageVector = icon, contentDescription = text, tint = Color.White, modifier = Modifier.size(24.dp))
+        Icon(
+            imageVector = icon,
+            contentDescription = text,
+            tint = Color.White,
+            modifier = Modifier.size(24.dp)
+        )
         Spacer(modifier = Modifier.width(16.dp))
         Text(text, style = TextStyle(fontSize = 16.sp, color = Color.White))
     }
