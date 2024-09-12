@@ -9,6 +9,8 @@ import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -28,12 +30,11 @@ import androidx.compose.ui.unit.sp
 import com.example.e_techcollectionapp.ui.theme.DarkGreen
 import com.example.e_techcollectionapp.ui.theme.White
 import com.example.e_techcollectionapp.ui.theme.Yellow
-import com.example.etechcollectionapp.R
 import kotlinx.coroutines.launch
 import androidx.compose.ui.platform.LocalContext
 
 
-class Feed : ComponentActivity() {
+open class Feed : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
@@ -123,18 +124,33 @@ fun FeedScreen() {
                             )
                         )
 
-                        LazyColumn(
+                        val footerHeight = 50.dp
+
+                        Box(
                             modifier = Modifier
                                 .fillMaxSize()
-                                .padding(horizontal = 18.dp)
-                        ) {
-                            items(businesses) { business ->
-                                BusinessCard(business)
-                                Spacer(modifier = Modifier.height(16.dp))
+                        )
+                        {
+                            LazyColumn(
+                                modifier = Modifier
+                                    .fillMaxSize()
+                                    .padding(horizontal = 18.dp)
+                                    .padding(bottom = footerHeight)
+                            ) {
+                                items(businesses) { business ->
+                                    BusinessCard(business)
+                                    Spacer(modifier = Modifier.height(16.dp))
+                                }
                             }
-                        }
 
-                        baseboard()
+                            baseboard(
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .height(footerHeight)
+                                    .align(Alignment.BottomCenter)
+                            )
+
+                        }
                     }
                 }
             )
@@ -143,18 +159,30 @@ fun FeedScreen() {
 }
 
 @Composable
-fun baseboard() {
+fun baseboard(modifier: Modifier = Modifier) {
+    val footerHeight = 60.dp
+
     Box(
-        modifier = Modifier.fillMaxSize(),
-        contentAlignment = Alignment.BottomCenter
+        modifier = modifier
+            .fillMaxWidth()
+            .height(footerHeight)
+            .background(color = White)
+            .border(2.dp, DarkGreen)
+            .padding(8.dp)
     ) {
-        Image(
-            painter = painterResource(id = R.drawable.rodape),
-            contentDescription = "Rodapé",
-            modifier = Modifier.fillMaxWidth()
+        Text(
+            text = "ANUNCIE AQUI",
+            color = DarkGreen,
+            fontSize = 32.sp,
+            fontWeight = FontWeight.Normal,
+            textAlign = TextAlign.Center,
+            modifier = Modifier
+                .fillMaxSize()
+                .align(Alignment.Center)
         )
     }
 }
+
 
 @Composable
 fun BusinessCard(business: Business) {
@@ -210,8 +238,7 @@ fun BusinessCard(business: Business) {
                 horizontalArrangement = Arrangement.SpaceEvenly,
                 modifier = Modifier.fillMaxWidth()
             ) {
-                // Estado para itens aceitos
-                var showItems by remember { mutableStateOf(false) }
+                                var showItems by remember { mutableStateOf(false) }
                 val acceptedItems = listOf("Celular", "Computador", "Bateria")
 
                 Button(
