@@ -19,7 +19,6 @@ import androidx.compose.material.icons.filled.Place
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Delete
 import com.example.e_techcollectionapp.ui.theme.DarkGreen
-import com.example.e_techcollectionapp.ui.theme.Yellow
 import com.example.etechcollectionapp.R
 
 @Composable
