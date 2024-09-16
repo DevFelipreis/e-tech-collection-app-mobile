@@ -1,6 +1,5 @@
 package com.example.etechcollectionapp
 
-
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -8,14 +7,10 @@ import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
-import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -29,11 +24,9 @@ import androidx.compose.ui.unit.sp
 import com.example.e_techcollectionapp.ui.theme.DarkGreen
 import com.example.e_techcollectionapp.ui.theme.White
 import com.example.e_techcollectionapp.ui.theme.Yellow
-import kotlinx.coroutines.launch
 import androidx.compose.ui.platform.LocalContext
 
-
-open class Feed : ComponentActivity() {
+open class FeedActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
@@ -45,143 +38,81 @@ open class Feed : ComponentActivity() {
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun FeedScreen() {
-    val drawerState = rememberDrawerState(DrawerValue.Closed)
-    val scope = rememberCoroutineScope()
+    val context = LocalContext.current
 
-    ModalNavigationDrawer(
-        drawerState = drawerState,
-        drawerContent = {
-            DrawerContent {
-                scope.launch { drawerState.close() }
-            }
-        },
-        content = {
-            Scaffold(
-                topBar = {
-                    Box {
-                        TopAppBar(
-                            title = { },
-                            navigationIcon = {
-                                IconButton(onClick = {
-                                    scope.launch {
-                                        if (drawerState.isClosed) drawerState.open()
-                                        else drawerState.close()
-                                    }
-                                }) {
-                                    Icon(
-                                        imageVector = Icons.Default.Menu,
-                                        contentDescription = "Menu",
-                                        tint = DarkGreen
-                                    )
-                                }
-                            },
-                            modifier = Modifier
-                                .height(72.dp)
-                                .fillMaxWidth()
-                        )
-                        Box(
-                            modifier = Modifier
-                                .align(Alignment.CenterEnd)
-                                .padding(16.dp)
-                        ) {
-                            Image(
-                                painter = painterResource(id = R.drawable.logo),
-                                contentDescription = "Logo",
-                                modifier = Modifier
-                                    .height(48.dp)
-                                    .widthIn(max = 180.dp)
-                            )
-                        }
-                    }
-                },
-                content = { innerPadding ->
+    Scaffold(
+        topBar = {
+            TopAppBar(
+                title = { },
+                actions = {
                     Box(
                         modifier = Modifier
-                            .fillMaxSize()
-                            .padding(innerPadding)
+                            .fillMaxHeight()
+                            .padding(16.dp)
                     ) {
-                        val businesses = listOf(
-                            Business(
-                                "Cel-Tech Eletronicos", "Em breve",
-                                "021 99999-9999",
-                                "Rua A - Oliveira - Centro - Rio de Janeiro - RJ"
-                            ),
-                            Business(
-                                "Matias Tech", "Em breve",
-                                "021 99999-9999",
-                                "Rua A - Oliveira - Centro - Rio de Janeiro - RJ"
-                            ),
-                            Business(
-                                "Rodri Tech", "Em breve",
-                                "021 99999-9999",
-                                "Rua A - Oliveira - Centro - Rio de Janeiro - RJ"
-                            ),
-                            Business(
-                                "Apple Silva", "Em breve",
-                                "021 99999-9999",
-                                "Rua A - Oliveira - Centro - Rio de Janeiro - RJ"
-                            )
-                        )
-
-                        val footerHeight = 50.dp
-
-                        Box(
+                        Image(
+                            painter = painterResource(id = R.drawable.logo),
+                            contentDescription = "Logo",
                             modifier = Modifier
-                                .fillMaxSize()
+                                .height(72.dp)
                         )
-                        {
-                            LazyColumn(
-                                modifier = Modifier
-                                    .fillMaxSize()
-                                    .padding(horizontal = 18.dp)
-                                    .padding(bottom = footerHeight)
-                            ) {
-                                items(businesses) { business ->
-                                    BusinessCard(business)
-                                    Spacer(modifier = Modifier.height(16.dp))
-                                }
-                            }
+                    }
+                },
+                modifier = Modifier
+                    .height(72.dp)
+                    .fillMaxWidth()
+                    .padding(horizontal = 16.dp),
+                colors = TopAppBarDefaults.smallTopAppBarColors(containerColor = White)
+            )
+        },
+        bottomBar = {
+            BottomNavBar()
+        },
+        content = { innerPadding ->
+            Box(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(innerPadding)
+            ) {
+                val businesses = listOf(
+                    Business(
+                        "Cel-Tech Eletronicos", "Em breve",
+                        "021 99999-9999",
+                        "Rua A - Oliveira - Centro - Rio de Janeiro - RJ"
+                    ),
+                    Business(
+                        "Matias Tech", "Em breve",
+                        "021 99999-9999",
+                        "Rua A - Oliveira - Centro - Rio de Janeiro - RJ"
+                    ),
+                    Business(
+                        "Rodri Tech", "Em breve",
+                        "021 99999-9999",
+                        "Rua A - Oliveira - Centro - Rio de Janeiro - RJ"
+                    ),
+                    Business(
+                        "Apple Silva", "Em breve",
+                        "021 99999-9999",
+                        "Rua A - Oliveira - Centro - Rio de Janeiro - RJ"
+                    )
+                )
 
-                            baseboard(
-                                modifier = Modifier
-                                    .fillMaxWidth()
-                                    .height(footerHeight)
-                                    .align(Alignment.BottomCenter)
-                            )
-
-                        }
+                LazyColumn(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .padding(start = 16.dp)
+                        .padding(top = 16.dp)
+                        .padding(end = 16.dp)
+                ) {
+                    items(businesses) { business ->
+                        BusinessCard(business)
+                        Spacer(modifier = Modifier.height(16.dp))
                     }
                 }
-            )
+            }
         }
     )
 }
-
-@Composable
-fun baseboard(modifier: Modifier = Modifier) {
-    val footerHeight = 60.dp
-
-    Box(
-        modifier = modifier
-            .fillMaxWidth()
-            .height(footerHeight)
-            .background(color = White)
-            .border(2.dp, DarkGreen)
-            .padding(8.dp)
-    ) {
-        Text(
-            text = "ANUNCIE AQUI",
-            color = DarkGreen,
-            fontSize = 32.sp,
-            fontWeight = FontWeight.Normal,
-            textAlign = TextAlign.Center,
-            modifier = Modifier
-                .fillMaxSize()
-                .align(Alignment.Center)
-        )
-    }
-}
-
 
 @Composable
 fun BusinessCard(business: Business) {

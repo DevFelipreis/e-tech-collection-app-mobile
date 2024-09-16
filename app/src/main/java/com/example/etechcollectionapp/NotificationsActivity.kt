@@ -17,17 +17,17 @@ import com.example.e_techcollectionapp.ui.theme.White
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 
-open class UpdateProfileActivity : ComponentActivity() {
+open class NotificationActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            UpdateProfileScreen()
+            NotificationScreen()
         }
     }
 }
 
 @Composable
-fun UpdateProfileScreen() {
+fun NotificationScreen() {
     val context = LocalContext.current
 
     Scaffold(
@@ -55,7 +55,7 @@ fun UpdateProfileScreen() {
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun TopBarWithLogoUpdateProfile() {
+fun TopBarWithLogoNotification() {
     TopAppBar(
         title = { },
         actions = {
@@ -82,6 +82,6 @@ fun TopBarWithLogoUpdateProfile() {
 
 @Preview(showBackground = true)
 @Composable
-fun PreviewUpdateProfileScreen() {
-    UpdateProfileScreen()
+fun PreviewNotificationScreen() {
+    NotificationScreen()
 }
