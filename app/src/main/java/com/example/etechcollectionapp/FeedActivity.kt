@@ -1,7 +1,6 @@
 package com.example.etechcollectionapp
 
 
-import DrawerContent
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -238,7 +237,7 @@ fun BusinessCard(business: Business) {
                 horizontalArrangement = Arrangement.SpaceEvenly,
                 modifier = Modifier.fillMaxWidth()
             ) {
-                                var showItems by remember { mutableStateOf(false) }
+                var showItems by remember { mutableStateOf(false) }
                 val acceptedItems = listOf("Celular", "Computador", "Bateria")
 
                 Button(

@@ -79,6 +79,16 @@ fun SplashScreen() {
                 .fillMaxWidth()
                 .align(Alignment.CenterHorizontally)
         )
+        Text(
+            text = "@e-TechCollectionApp",
+            color = DarkGreen,
+            fontSize = 16.sp,
+            fontWeight = FontWeight.Normal,
+            textAlign = TextAlign.Center,
+            modifier = Modifier
+                .fillMaxWidth()
+                .align(Alignment.CenterHorizontally)
+        )
     }
 }
 

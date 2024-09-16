@@ -1,5 +1,8 @@
+package com.example.etechcollectionapp
+
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
@@ -13,64 +16,83 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Close
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Notifications
 import androidx.compose.material.icons.filled.Place
-import androidx.compose.material.icons.filled.Add
-import androidx.compose.material.icons.filled.Delete
 import com.example.e_techcollectionapp.ui.theme.DarkGreen
-import com.example.etechcollectionapp.R
+
 
 @Composable
-fun DrawerContent(onCloseDrawer: () -> Unit) {
+fun DrawerContent(onOptionClick: (String) -> Unit) {
     Column(
         modifier = Modifier
             .width(300.dp)
             .background(color = DarkGreen)
             .padding(16.dp)
     ) {
-        Image(
-            painter = painterResource(id = R.drawable.perfil),
-            contentDescription = "Perfil",
-            modifier = Modifier
-                .size(64.dp)
-                .padding(8.dp)
-        )
-        Text(
-            "Meu Nome",
-            style = TextStyle(fontSize = 24.sp, fontWeight = FontWeight.Bold, color = Color.White),
-            modifier = Modifier.padding(start = 8.dp)
-        )
-        Text(
-            "Minha Conta",
-            style = TextStyle(
-                fontSize = 21.sp,
-                fontWeight = FontWeight.Normal,
-                color = Color.White
-            ),
-            modifier = Modifier.padding(start = 8.dp)
-        )
-        Spacer(modifier = Modifier.height(16.dp))
-        DrawerOption("Início", Icons.Filled.Home)
-        DrawerOption("Notificações", Icons.Filled.Notifications)
-        DrawerOption("Meus locais de coleta", Icons.Filled.Place)
-        DrawerOption("Cadastrar locais de coleta", Icons.Filled.Add)
-        DrawerOption("Meus Descartes", Icons.Filled.Delete)
-        Spacer(modifier = Modifier.height(16.dp))
         Row(
-            modifier = Modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.End
+            modifier = Modifier
+                .padding(bottom = 16.dp)
+                .fillMaxWidth(),
+            horizontalArrangement = Arrangement.Start
         ) {
-            Button(
-                onClick = onCloseDrawer,
-                colors = ButtonDefaults.buttonColors(containerColor = DarkGreen),
+            Image(
+                painter = painterResource(id = R.drawable.perfil),
+                contentDescription = "Perfil",
                 modifier = Modifier
-
+                    .size(64.dp)
+                    .padding(8.dp)
+            )
+            Column(
+                modifier = Modifier
+                    .padding(start = 8.dp)
             ) {
-                Text("Sair")
+                Text(
+                    text = "Meu Nome",
+                    style = TextStyle(
+                        fontSize = 24.sp,
+                        fontWeight = FontWeight.Bold,
+                        color = Color.White
+                    )
+                )
+                Text(
+                    text = "Minha Conta",
+                    style = TextStyle(
+                        fontSize = 21.sp,
+                        fontWeight = FontWeight.Normal,
+                        color = Color.White
+                    )
+                )
             }
         }
+
+        DrawerOption("Início", Icons.Filled.Home) { onOptionClick("home") }
+        DrawerOption("Notificações", Icons.Filled.Notifications) { onOptionClick("notifications") }
+        DrawerOption(
+            "Meus locais de coleta",
+            Icons.Filled.Place
+        ) { onOptionClick("collection_locations") }
+
+        Spacer(modifier = Modifier.weight(1f))
+
+        Button(
+            onClick = { onOptionClick("logout") },
+            colors = ButtonDefaults.buttonColors(containerColor = DarkGreen),
+            modifier = Modifier.fillMaxWidth()
+        ) {
+            Icon(
+                imageVector = Icons.Filled.Close,
+                contentDescription = "Logout",
+                tint = Color.White,
+                modifier = Modifier.size(24.dp)
+            )
+            Spacer(modifier = Modifier.width(8.dp))
+            Text("Sair", color = Color.White)
+        }
+
         Spacer(modifier = Modifier.height(16.dp))
+
         Image(
             painter = painterResource(id = R.drawable.logo2),
             contentDescription = "Logo",
@@ -82,8 +104,13 @@ fun DrawerContent(onCloseDrawer: () -> Unit) {
 }
 
 @Composable
-fun DrawerOption(text: String, icon: ImageVector) {
-    Row(modifier = Modifier.padding(8.dp)) {
+fun DrawerOption(text: String, icon: ImageVector, onClick: () -> Unit) {
+    Row(
+        modifier = Modifier
+            .padding(vertical = 8.dp)
+            .clickable(onClick = onClick)
+            .fillMaxWidth()
+    ) {
         Icon(
             imageVector = icon,
             contentDescription = text,
