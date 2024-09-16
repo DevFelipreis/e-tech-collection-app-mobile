@@ -103,22 +103,22 @@ fun FeedScreen() {
                     ) {
                         val businesses = listOf(
                             Business(
-                                "Cel-Tech Eletronicos", 4,
+                                "Cel-Tech Eletronicos", "Em breve",
                                 "021 99999-9999",
                                 "Rua A - Oliveira - Centro - Rio de Janeiro - RJ"
                             ),
                             Business(
-                                "Matias Tech", 3,
+                                "Matias Tech", "Em breve",
                                 "021 99999-9999",
                                 "Rua A - Oliveira - Centro - Rio de Janeiro - RJ"
                             ),
                             Business(
-                                "Rodri Tech", 5,
+                                "Rodri Tech", "Em breve",
                                 "021 99999-9999",
                                 "Rua A - Oliveira - Centro - Rio de Janeiro - RJ"
                             ),
                             Business(
-                                "Apple Silva", 4,
+                                "Apple Silva", "Em breve",
                                 "021 99999-9999",
                                 "Rua A - Oliveira - Centro - Rio de Janeiro - RJ"
                             )
@@ -311,7 +311,7 @@ fun BusinessCard(business: Business) {
 
 data class Business(
     val name: String,
-    val rating: Int,
+    val rating: String,
     val phone: String,
     val address: String
 )

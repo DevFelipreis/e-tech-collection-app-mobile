@@ -1,11 +1,7 @@
 package com.example.etechcollectionapp
 
-
 import DrawerContent
-import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
-import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
@@ -17,6 +13,8 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Menu
+import androidx.compose.material.icons.filled.Edit
+import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -31,21 +29,19 @@ import com.example.e_techcollectionapp.ui.theme.DarkGreen
 import com.example.e_techcollectionapp.ui.theme.White
 import com.example.e_techcollectionapp.ui.theme.Yellow
 import kotlinx.coroutines.launch
-import androidx.compose.ui.platform.LocalContext
-
 
 open class MyCollectionPoint : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            FeedScreen()
+            MyCollectionPointScreen()
         }
     }
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun FeedScreenMyCollectionPoint() {
+fun MyCollectionPointScreen() {
     val drawerState = rememberDrawerState(DrawerValue.Closed)
     val scope = rememberCoroutineScope()
 
@@ -102,25 +98,20 @@ fun FeedScreenMyCollectionPoint() {
                             .padding(innerPadding)
                     ) {
                         val businesses = listOf(
-                            Business(
-                                "Cel-Tech Eletronicos", 4,
+                            BusinessMyCollectionPoint(
+                                "Cel-Tech Eletrônicos", "Em Breve",
                                 "021 99999-9999",
                                 "Rua A - Oliveira - Centro - Rio de Janeiro - RJ"
                             ),
-                            Business(
-                                "Matias Tech", 3,
+                            BusinessMyCollectionPoint(
+                                "Matias Tech", "Em Breve",
                                 "021 99999-9999",
                                 "Rua A - Oliveira - Centro - Rio de Janeiro - RJ"
                             ),
-                            Business(
-                                "Rodri Tech", 5,
+                            BusinessMyCollectionPoint(
+                                "Jofá Tech", "Em Breve",
                                 "021 99999-9999",
-                                "Rua A - Oliveira - Centro - Rio de Janeiro - RJ"
-                            ),
-                            Business(
-                                "Apple Silva", 4,
-                                "021 99999-9999",
-                                "Rua A - Oliveira - Centro - Rio de Janeiro - RJ"
+                                "Rua A - Travessa - Interior - São Paulo - SP"
                             )
                         )
 
@@ -129,8 +120,7 @@ fun FeedScreenMyCollectionPoint() {
                         Box(
                             modifier = Modifier
                                 .fillMaxSize()
-                        )
-                        {
+                        ) {
                             LazyColumn(
                                 modifier = Modifier
                                     .fillMaxSize()
@@ -138,18 +128,17 @@ fun FeedScreenMyCollectionPoint() {
                                     .padding(bottom = footerHeight)
                             ) {
                                 items(businesses) { business ->
-                                    BusinessCard(business)
+                                    BusinessCardMyCollectionPoint(business)
                                     Spacer(modifier = Modifier.height(16.dp))
                                 }
                             }
 
-                            baseboard(
+                            baseboardMyCollectionPoint(
                                 modifier = Modifier
                                     .fillMaxWidth()
                                     .height(footerHeight)
                                     .align(Alignment.BottomCenter)
                             )
-
                         }
                     }
                 }
@@ -183,9 +172,8 @@ fun baseboardMyCollectionPoint(modifier: Modifier = Modifier) {
     }
 }
 
-
 @Composable
-fun BusinessCardMyCollectionPoint(business: Business) {
+fun BusinessCardMyCollectionPoint(business: BusinessMyCollectionPoint) {
     Card(
         shape = RoundedCornerShape(16.dp),
         elevation = CardDefaults.cardElevation(4.dp),
@@ -220,89 +208,57 @@ fun BusinessCardMyCollectionPoint(business: Business) {
             )
             Spacer(modifier = Modifier.height(8.dp))
             Text(
-                text = business.phone,
+                text = "Telefone: ${business.phone}",
+                fontSize = 16.sp,
+                fontWeight = FontWeight.Medium,
                 color = White,
                 modifier = Modifier.fillMaxWidth(),
                 textAlign = TextAlign.Center
             )
             Spacer(modifier = Modifier.height(8.dp))
             Text(
-                text = business.address,
+                text = "Endereço: ${business.address}",
+                fontSize = 16.sp,
+                fontWeight = FontWeight.Medium,
                 color = White,
                 modifier = Modifier.fillMaxWidth(),
                 textAlign = TextAlign.Center
             )
-            Spacer(modifier = Modifier.height(8.dp))
+
+            Spacer(modifier = Modifier.weight(1f))
 
             Row(
-                horizontalArrangement = Arrangement.SpaceEvenly,
-                modifier = Modifier.fillMaxWidth()
+                horizontalArrangement = Arrangement.End,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(8.dp)
             ) {
-                var showItems by remember { mutableStateOf(false) }
-                val acceptedItems = listOf("Celular", "Computador", "Bateria")
-
-                Button(
-                    onClick = { showItems = !showItems },
-                    colors = ButtonDefaults.buttonColors(containerColor = Yellow),
-                    modifier = Modifier.weight(1f)
-                ) {
-                    Text(text = "Aceita", color = DarkGreen)
-                }
-
-                if (showItems) {
-                    Column {
-                        acceptedItems.forEach { item ->
-                            Text(text = item)
-                        }
-                    }
-                }
-
-                Spacer(modifier = Modifier.width(8.dp))
-
-                val context = LocalContext.current
-                val googleMapsIntentUri = Uri.parse("geo:0,0?q=${business.address}")
-
-                Button(
+                IconButton(
                     onClick = {
-                        val intent = Intent(Intent.ACTION_VIEW, googleMapsIntentUri).apply {
-                            setPackage("com.google.android.apps.maps")
-                        }
-
-                        if (intent.resolveActivity(context.packageManager) != null) {
-                            context.startActivity(intent)
-                        } else {
-                            Toast.makeText(
-                                context,
-                                "Google Maps não está disponível",
-                                Toast.LENGTH_SHORT
-                            ).show()
-                        }
+                        // lógica
                     },
-                    colors = ButtonDefaults.buttonColors(containerColor = Yellow),
-                    modifier = Modifier.weight(1f)
+                    modifier = Modifier.size(24.dp)
                 ) {
-                    Text("Mapa", color = DarkGreen)
+                    Icon(
+                        imageVector = Icons.Default.Edit,
+                        contentDescription = "Editar",
+                        tint = Yellow
+                    )
                 }
 
                 Spacer(modifier = Modifier.width(8.dp))
 
-                var showSchedule by remember { mutableStateOf(false) }
-                val schedule = listOf("Seg-Sex: 9h às 18h", "Sáb: 9h às 13h")
-
-                Button(
-                    onClick = { showSchedule = !showSchedule },
-                    colors = ButtonDefaults.buttonColors(containerColor = Yellow),
-                    modifier = Modifier.weight(1f)
+                IconButton(
+                    onClick = {
+                        // lógica
+                    },
+                    modifier = Modifier.size(24.dp)
                 ) {
-                    Text(text = "Horário", color = DarkGreen)
-                }
-
-                if (showSchedule) {
-                    Column {
-                        schedule.forEach { time ->
-                            Text(text = time)
-                        }
-                    }
+                    Icon(
+                        imageVector = Icons.Default.Delete,
+                        contentDescription = "Excluir",
+                        tint = Yellow
+                    )
                 }
             }
         }
@@ -311,7 +267,7 @@ fun BusinessCardMyCollectionPoint(business: Business) {
 
 data class BusinessMyCollectionPoint(
     val name: String,
-    val rating: Int,
+    val rating: String,
     val phone: String,
     val address: String
 )
@@ -319,5 +275,5 @@ data class BusinessMyCollectionPoint(
 @Preview(showBackground = true)
 @Composable
 fun PreviewFeedScreenMyCollectionPoint() {
-    FeedScreen()
+    MyCollectionPointScreen()
 }
