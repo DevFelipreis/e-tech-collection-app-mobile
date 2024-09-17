@@ -5,6 +5,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.material3.*
@@ -17,6 +18,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.style.TextAlign
@@ -25,19 +27,37 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.e_techcollectionapp.ui.theme.DarkGreen
 import com.example.e_techcollectionapp.ui.theme.LightGreen
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
+import com.example.etechcollectionapp.ui.theme.EtechCollectionAppTheme
+import androidx.compose.ui.text.buildAnnotatedString
+import androidx.compose.ui.text.style.TextDecoration
+import androidx.compose.ui.text.withStyle
 
-
-open class LoginActivity : ComponentActivity() {
+class LoginActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            LoginScreen()
+            EtechCollectionAppTheme {
+                val navController = rememberNavController()
+                SetupNavGraph(navController = navController)
+            }
         }
     }
 }
 
 @Composable
-fun LoginScreen() {
+fun SetupNavGraph(navController: NavHostController) {
+    NavHost(navController = navController, startDestination = "login") {
+        composable("login") { LoginScreen(navController) }
+        composable("createProfile") { CreateProfileScreen() }
+    }
+}
+
+@Composable
+fun LoginScreen(navController: NavHostController) {
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
 
@@ -208,15 +228,25 @@ fun LoginScreen() {
             }
 
             Text(
-                text = "Ainda não possui uma conta? Cadastre-se",
-                fontSize = 14.sp,
-                fontWeight = FontWeight.Bold,
-                color = DarkGreen,
+                text = buildAnnotatedString {
+                    withStyle(style = SpanStyle(fontSize = 14.sp, fontWeight = FontWeight.Bold,
+                        color = DarkGreen)) {
+                        append("Ainda não possui uma conta? ")
+                    }
+                    withStyle(style = SpanStyle(fontSize = 14.sp,
+                        fontWeight = FontWeight.Bold,
+                        color = DarkGreen,
+                        textDecoration = TextDecoration.Underline)) {
+                        append("Cadastre-se")
+                    }
+                },
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(8.dp),
+                    .padding(8.dp)
+                    .clickable { navController.navigate("createProfile") },
                 textAlign = TextAlign.Center
             )
+
         }
 
         Image(
@@ -233,6 +263,9 @@ fun LoginScreen() {
 @Preview(showBackground = true)
 @Composable
 fun PreviewLoginScreen() {
-    LoginScreen()
+    val mockNavController = rememberNavController()
+    LoginScreen(navController = mockNavController)
 }
+
+
 

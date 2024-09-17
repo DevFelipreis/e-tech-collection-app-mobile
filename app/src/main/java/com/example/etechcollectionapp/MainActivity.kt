@@ -22,15 +22,15 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.e_techcollectionapp.ui.theme.DarkGreen
-import com.example.e_techcollectionapp.ui.theme.ETechCollectionAppTheme
 import com.example.e_techcollectionapp.ui.theme.White
+import com.example.etechcollectionapp.ui.theme.EtechCollectionAppTheme
 import kotlinx.coroutines.delay
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            ETechCollectionAppTheme {
+            EtechCollectionAppTheme {
                 Surface(
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
@@ -82,11 +82,10 @@ fun SplashScreen() {
     }
 }
 
-
 @Preview(showBackground = true)
 @Composable
 fun PreviewSplashScreen() {
-    ETechCollectionAppTheme {
+    EtechCollectionAppTheme {
         SplashScreen()
     }
 }
