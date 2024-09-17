@@ -9,29 +9,29 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.e_techcollectionapp.ui.theme.DarkGreen
 import com.example.e_techcollectionapp.ui.theme.White
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 
-open class UpdateProfileActivity : ComponentActivity() {
+open class NotificationActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            UpdateProfileScreen()
+            NotificationScreen()
         }
     }
 }
 
 @Composable
-fun UpdateProfileScreen() {
+fun NotificationScreen() {
     val context = LocalContext.current
 
     Scaffold(
-        topBar = { TopBarWithLogoUpdateProfile() },
+        topBar = { TopBarWithLogoNotification() },
         bottomBar = { BottomNavBar() },
         content = { innerPadding ->
             Box(
@@ -55,7 +55,7 @@ fun UpdateProfileScreen() {
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun TopBarWithLogoUpdateProfile() {
+fun TopBarWithLogoNotification() {
     TopAppBar(
         title = { },
         actions = {
@@ -82,6 +82,6 @@ fun TopBarWithLogoUpdateProfile() {
 
 @Preview(showBackground = true)
 @Composable
-fun PreviewUpdateProfileScreen() {
-    UpdateProfileScreen()
+fun PreviewNotificationScreen() {
+    NotificationScreen()
 }
