@@ -44,13 +44,13 @@ fun BottomNavBar() {
                 context.startActivity(Intent(context, FeedActivity::class.java))
             }
             BottomNavItem(icon = Icons.Filled.Notifications, label = "Notificações") {
-                context.startActivity(Intent(context, MyCollectionPointActivity::class.java))
+                context.startActivity(Intent(context, NotificationActivity::class.java))
             }
             BottomNavItem(icon = Icons.Filled.Place, label = "Meus Locais") {
-                context.startActivity(Intent(context, CreateCollectionPointActivity::class.java))
+                context.startActivity(Intent(context, MyCollectionPointActivity::class.java))
             }
             BottomNavItem(icon = Icons.Filled.Add, label = "Cadastrar") {
-                context.startActivity(Intent(context, UpdateProfileActivity::class.java))
+                context.startActivity(Intent(context, CreateCollectionPointActivity::class.java))
             }
             BottomNavItem(icon = Icons.Filled.AccountCircle, label = "Meu Perfil") {
                 context.startActivity(Intent(context, UpdateProfileActivity::class.java))

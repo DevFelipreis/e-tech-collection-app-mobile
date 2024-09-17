@@ -9,12 +9,12 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.e_techcollectionapp.ui.theme.DarkGreen
 import com.example.e_techcollectionapp.ui.theme.White
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 
 open class NotificationActivity : ComponentActivity() {
@@ -31,7 +31,7 @@ fun NotificationScreen() {
     val context = LocalContext.current
 
     Scaffold(
-        topBar = { TopBarWithLogo() },
+        topBar = { TopBarWithLogoNotification() },
         bottomBar = { BottomNavBar() },
         content = { innerPadding ->
             Box(

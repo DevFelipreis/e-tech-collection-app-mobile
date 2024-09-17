@@ -14,7 +14,7 @@
         tools:targetApi="31">
 
         <activity
-            android:name=".FeedActivity"
+            android:name=".MainActivity"
             android:exported="true"
             android:theme="@style/Theme.ETechCollectionApp">
             <intent-filter>
@@ -25,10 +25,16 @@
 
 
         <activity
-            android:name=".Login"
+            android:name=".LoginActivity"
             android:exported="true"
             android:label="Login"
             android:theme="@style/Theme.ETechCollectionApp" />
+        <activity android:name=".MyCollectionPointActivity" />
+        <activity android:name=".CreateCollectionPointActivity" />
+        <activity android:name=".UpdateProfileActivity" />
+        <activity android:name=".NotificationActivity" />
+        <activity android:name=".FeedActivity" />
+
 
     </application>
 

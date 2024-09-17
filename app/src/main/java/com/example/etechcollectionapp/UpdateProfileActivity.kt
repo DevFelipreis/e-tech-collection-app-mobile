@@ -31,7 +31,7 @@ fun UpdateProfileScreen() {
     val context = LocalContext.current
 
     Scaffold(
-        topBar = { TopBarWithLogo() },
+        topBar = { TopBarWithLogoUpdateProfile() },
         bottomBar = { BottomNavBar() },
         content = { innerPadding ->
             Box(

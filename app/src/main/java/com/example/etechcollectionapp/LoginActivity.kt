@@ -39,7 +39,6 @@ fun LoginScreen() {
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
     ) {
-        // Adicione aqui os elementos da tela de login
         Text(text = "Login Screen")
     }
 }
