@@ -41,191 +41,191 @@ fun LoginScreen() {
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
 
-    Column(
+    Box(
         modifier = Modifier
             .fillMaxSize()
             .background(Color.White)
-            .padding(0.dp),
-        horizontalAlignment = Alignment.CenterHorizontally,
-
     ) {
-        Image(
-            painter = painterResource(id = R.drawable.logo),
-            contentDescription = "Logo",
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(16.dp)
-                .padding(top = 90.dp)
-        )
         Column(
-            modifier = Modifier.fillMaxWidth(),
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(16.dp)
+                .padding(bottom = 100.dp),
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            Image(
+                painter = painterResource(id = R.drawable.logo),
+                contentDescription = "Logo",
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(top = 90.dp)
+            )
 
+            Column(
+                modifier = Modifier.fillMaxWidth()
             ) {
+                Text(
+                    text = "Entrar",
+                    fontSize = 32.sp,
+                    fontWeight = FontWeight.Bold,
+                    color = DarkGreen,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(8.dp)
+                        .padding(top = 32.dp),
+                    textAlign = TextAlign.Start
+                )
+
+                BasicTextField(
+                    value = email,
+                    onValueChange = { email = it },
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(8.dp)
+                        .background(Color.White),
+                    decorationBox = { innerTextField ->
+                        Column {
+                            Row(verticalAlignment = Alignment.CenterVertically) {
+                                Icon(
+                                    painter = painterResource(id = android.R.drawable.ic_dialog_email),
+                                    contentDescription = "Email Icon",
+                                    tint = DarkGreen,
+                                    modifier = Modifier.size(24.dp)
+                                )
+                                Spacer(modifier = Modifier.width(8.dp))
+                                if (email.isEmpty()) {
+                                    Text("Digite seu email", color = DarkGreen)
+                                }
+                                innerTextField()
+                            }
+                            Box(
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .height(1.dp)
+                                    .background(color = LightGreen)
+                            )
+                        }
+                    }
+                )
+
+                Spacer(modifier = Modifier.height(16.dp))
+
+                BasicTextField(
+                    value = password,
+                    onValueChange = { password = it },
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(8.dp)
+                        .background(Color.White),
+                    visualTransformation = PasswordVisualTransformation(),
+                    decorationBox = { innerTextField ->
+                        Column {
+                            Row(verticalAlignment = Alignment.CenterVertically) {
+                                Icon(
+                                    painter = painterResource(id = android.R.drawable.ic_lock_idle_lock),
+                                    contentDescription = "Password Icon",
+                                    tint = DarkGreen,
+                                    modifier = Modifier.size(24.dp)
+                                )
+                                Spacer(modifier = Modifier.width(8.dp))
+                                if (password.isEmpty()) {
+                                    Text("Digite sua senha", color = DarkGreen)
+                                }
+                                innerTextField()
+                            }
+                            Box(
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .height(1.dp)
+                                    .background(color = LightGreen)
+                            )
+                        }
+                    }
+                )
+
+                Text(
+                    text = "Esqueceu a senha?",
+                    fontSize = 14.sp,
+                    fontWeight = FontWeight.Bold,
+                    color = LightGreen,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(8.dp),
+                    textAlign = TextAlign.End
+                )
+
+                Spacer(modifier = Modifier.height(16.dp))
+
+                Button(
+                    onClick = { /* Handle login */ },
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(8.dp),
+                    colors = ButtonDefaults.buttonColors(containerColor = DarkGreen),
+                ) {
+                    Row(verticalAlignment = Alignment.CenterVertically) {
+                        Icon(
+                            painter = painterResource(id = android.R.drawable.ic_menu_send),
+                            contentDescription = "Acessar Icon",
+                            tint = Color.White,
+                            modifier = Modifier.size(24.dp)
+                        )
+                        Spacer(modifier = Modifier.width(8.dp))
+                        Text("Acessar", color = Color.White)
+                    }
+                }
+
+                Spacer(modifier = Modifier.height(16.dp))
+
+                Text(
+                    text = "OU",
+                    fontSize = 16.sp,
+                    fontWeight = FontWeight.Bold,
+                    color = LightGreen,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(8.dp),
+                    textAlign = TextAlign.Center
+                )
+
+                Button(
+                    onClick = { /* Handle Google login */ },
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(8.dp),
+                    colors = ButtonDefaults.buttonColors(containerColor = Color.LightGray)
+                ) {
+                    Row(verticalAlignment = Alignment.CenterVertically) {
+                        Image(
+                            painter = painterResource(id = R.drawable.logogoogle),
+                            contentDescription = "Google Icon",
+                            modifier = Modifier.size(24.dp)
+                        )
+                        Spacer(modifier = Modifier.width(8.dp))
+                        Text("Entrar com o Google", color = Color.Black)
+                    }
+                }
+            }
+
             Text(
-                text = "Entrar",
-                fontSize = 32.sp,
+                text = "Ainda não possui uma conta? Cadastre-se",
+                fontSize = 14.sp,
                 fontWeight = FontWeight.Bold,
                 color = DarkGreen,
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(8.dp)
-                    .padding(top = 32.dp)
-                    .background(Color.White),
-                textAlign = TextAlign.Start
-            )
-
-            BasicTextField(
-                value = email,
-                onValueChange = { email = it },
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(8.dp)
-                    .background(Color.White),
-                decorationBox = { innerTextField ->
-                    Column {
-                        Row(verticalAlignment = Alignment.CenterVertically) {
-                            Icon(
-                                painter = painterResource(id = android.R.drawable.ic_dialog_email),
-                                contentDescription = "Email Icon",
-                                tint = DarkGreen,
-                                modifier = Modifier.size(24.dp)
-                            )
-                            Spacer(modifier = Modifier.width(8.dp))
-                            if (email.isEmpty()) {
-                                Text("Digite seu email", color = DarkGreen)
-                            }
-                            innerTextField()
-                        }
-                        Box(
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .height(1.dp)
-                                .background(color = LightGreen)
-                        )
-                    }
-                }
-            )
-
-            Spacer(modifier = Modifier.height(16.dp))
-
-            BasicTextField(
-                value = password,
-                onValueChange = { password = it },
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(8.dp)
-                    .background(Color.White),
-                visualTransformation = PasswordVisualTransformation(),
-                decorationBox = { innerTextField ->
-                    Column {
-                        Row(verticalAlignment = Alignment.CenterVertically) {
-                            Icon(
-                                painter = painterResource(id = android.R.drawable.ic_lock_idle_lock),
-                                contentDescription = "Password Icon",
-                                tint = DarkGreen,
-                                modifier = Modifier.size(24.dp)
-                            )
-                            Spacer(modifier = Modifier.width(8.dp))
-                            if (password.isEmpty()) {
-                                Text("Digite sua senha", color = DarkGreen)
-                            }
-                            innerTextField()
-                        }
-                        Box(
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .height(1.dp)
-                                .background(color = LightGreen)
-                        )
-                    }
-                }
-            )
-
-            Text(
-                text = "Esqueceu a senha?",
-                fontSize = 14.sp,
-                fontWeight = FontWeight.Bold,
-                color = LightGreen,
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(8.dp)
-                    .background(Color.White),
-                textAlign = TextAlign.End
-            )
-
-            Spacer(modifier = Modifier.height(16.dp))
-
-            Button(
-                onClick = { /* Handle login */ },
-                modifier = Modifier
-                    .fillMaxWidth()
                     .padding(8.dp),
-                colors = ButtonDefaults.buttonColors(containerColor = DarkGreen),
-            ) {
-                Row(verticalAlignment = Alignment.CenterVertically) {
-                    Icon(
-                        painter = painterResource(id = android.R.drawable.ic_menu_send),
-                        contentDescription = "Acessar Icon",
-                        tint = Color.White,
-                        modifier = Modifier.size(24.dp)
-                    )
-                    Spacer(modifier = Modifier.width(8.dp))
-                    Text("Acessar", color = Color.White)
-                }
-            }
-
-            Spacer(modifier = Modifier.height(16.dp))
-
-            Text(
-                text = "OU",
-                fontSize = 16.sp,
-                fontWeight = FontWeight.Bold,
-                color = LightGreen,
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(8.dp)
-                    .background(Color.White),
                 textAlign = TextAlign.Center
             )
-
-            Button(
-                onClick = { /* Handle Google login */ },
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(8.dp),
-                colors = ButtonDefaults.buttonColors(containerColor = Color.LightGray)
-            ) {
-                Row(verticalAlignment = Alignment.CenterVertically) {
-                    Image(
-                        painter = painterResource(id = R.drawable.logogoogle),
-                        contentDescription = "Google Icon",
-                        modifier = Modifier.size(24.dp)
-                    )
-                    Spacer(modifier = Modifier.width(8.dp))
-                    Text("Entrar com o Google", color = Color.Black)
-                }
-            }
-
         }
-
-        Text(
-            text = "Ainda não possui uma conta? Cadastre-se",
-            fontSize = 14.sp,
-            fontWeight = FontWeight.Bold,
-            color = DarkGreen,
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(8.dp)
-                .background(Color.White),
-            textAlign = TextAlign.Center
-        )
 
         Image(
             painter = painterResource(id = R.drawable.rodape),
             contentDescription = "Rodapé",
             modifier = Modifier
+                .align(Alignment.BottomCenter)
                 .fillMaxWidth()
-                .padding(top = 76.dp)
+                .padding(top = 16.dp)
         )
     }
 }
@@ -235,3 +235,4 @@ fun LoginScreen() {
 fun PreviewLoginScreen() {
     LoginScreen()
 }
+
