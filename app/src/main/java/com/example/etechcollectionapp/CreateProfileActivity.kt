@@ -60,9 +60,6 @@ fun CreateProfileScreen() {
                 colors = TopAppBarDefaults.smallTopAppBarColors(containerColor = White)
             )
         },
-        bottomBar = {
-            BottomNavBar()
-        },
         content = { innerPadding ->
             Box(
                 modifier = Modifier
