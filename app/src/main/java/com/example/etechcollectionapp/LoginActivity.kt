@@ -35,6 +35,11 @@ import com.example.etechcollectionapp.ui.theme.EtechCollectionAppTheme
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.text.withStyle
+import android.content.Intent
+import android.content.Context
+import android.net.Uri
+import androidx.compose.ui.platform.LocalContext
+
 
 class LoginActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -58,8 +63,10 @@ fun SetupNavGraph(navController: NavHostController) {
 
 @Composable
 fun LoginScreen(navController: NavHostController) {
+    val context = LocalContext.current
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
+
 
     Box(
         modifier = Modifier
@@ -177,7 +184,7 @@ fun LoginScreen(navController: NavHostController) {
                 Spacer(modifier = Modifier.height(16.dp))
 
                 Button(
-                    onClick = { /* Handle login */ },
+                    onClick = { openUrl(context, "https://chatgpt.com/") },
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(8.dp),
@@ -258,6 +265,13 @@ fun LoginScreen(navController: NavHostController) {
                 .padding(top = 16.dp)
         )
     }
+}
+
+private fun openUrl(context: Context, url: String) {
+    val intent = Intent(Intent.ACTION_VIEW).apply {
+        data = Uri.parse(url)
+    }
+    context.startActivity(intent)
 }
 
 @Preview(showBackground = true)
