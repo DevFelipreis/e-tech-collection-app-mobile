@@ -38,7 +38,6 @@ import androidx.compose.ui.text.withStyle
 import android.content.Intent
 import android.content.Context
 import android.net.Uri
-import androidx.compose.material.icons.filled.AccountCircle
 import androidx.compose.ui.platform.LocalContext
 
 
@@ -58,10 +57,9 @@ class LoginActivity : ComponentActivity() {
 fun SetupNavGraph(navController: NavHostController) {
     NavHost(navController = navController, startDestination = "login") {
         composable("login") { LoginScreen(navController) }
-        composable("createProfile") { CreateProfileScreen(navController) }
+        composable("createProfile") { CreateProfileScreen() }
     }
 }
-
 
 @Composable
 fun LoginScreen(navController: NavHostController) {
@@ -94,7 +92,7 @@ fun LoginScreen(navController: NavHostController) {
                 modifier = Modifier.fillMaxWidth()
             ) {
                 Text(
-                    text = "Registrar",
+                    text = "Entrar",
                     fontSize = 32.sp,
                     fontWeight = FontWeight.Bold,
                     color = DarkGreen,
@@ -116,7 +114,7 @@ fun LoginScreen(navController: NavHostController) {
                         Column {
                             Row(verticalAlignment = Alignment.CenterVertically) {
                                 Icon(
-                                    painter = painterResource(id = android.R.drawable.dark_header),
+                                    painter = painterResource(id = android.R.drawable.ic_dialog_email),
                                     contentDescription = "Email Icon",
                                     tint = DarkGreen,
                                     modifier = Modifier.size(24.dp)
@@ -186,7 +184,7 @@ fun LoginScreen(navController: NavHostController) {
                 Spacer(modifier = Modifier.height(16.dp))
 
                 Button(
-                    onClick = { },
+                    onClick = { openUrl(context, "https://chatgpt.com/") },
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(8.dp),
@@ -269,12 +267,16 @@ fun LoginScreen(navController: NavHostController) {
     }
 }
 
+private fun openUrl(context: Context, url: String) {
+    val intent = Intent(Intent.ACTION_VIEW).apply {
+        data = Uri.parse(url)
+    }
+    context.startActivity(intent)
+}
+
 @Preview(showBackground = true)
 @Composable
 fun PreviewLoginScreen() {
     val mockNavController = rememberNavController()
     LoginScreen(navController = mockNavController)
 }
-
-
-
