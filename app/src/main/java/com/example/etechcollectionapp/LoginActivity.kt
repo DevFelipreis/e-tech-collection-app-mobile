@@ -214,6 +214,7 @@ fun LoginScreen(navController: NavHostController) {
                         .padding(8.dp),
                     textAlign = TextAlign.Center
                 )
+                Spacer(modifier = Modifier.height(16.dp))
 
                 Button(
                     onClick = { /* Handle Google login */ },
@@ -280,6 +281,3 @@ fun PreviewLoginScreen() {
     val mockNavController = rememberNavController()
     LoginScreen(navController = mockNavController)
 }
-
-
-

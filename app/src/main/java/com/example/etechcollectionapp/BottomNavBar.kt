@@ -1,6 +1,5 @@
 package com.example.etechcollectionapp
 
-import com.example.etechcollectionapp.LoginActivity
 import android.content.Intent
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*

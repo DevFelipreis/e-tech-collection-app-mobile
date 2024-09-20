@@ -22,6 +22,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.e_techcollectionapp.ui.theme.DarkGreen
+import com.example.e_techcollectionapp.ui.theme.LightGreen
 import com.example.e_techcollectionapp.ui.theme.White
 import com.example.etechcollectionapp.ui.theme.EtechCollectionAppTheme
 import kotlinx.coroutines.delay
@@ -47,7 +48,7 @@ fun SplashScreen() {
     val context = LocalContext.current
 
     LaunchedEffect(Unit) {
-        delay(2000)
+        delay(1000)
         val intent = Intent(context, LoginActivity::class.java)
         context.startActivity(intent)
         (context as ComponentActivity).finish()
@@ -73,6 +74,16 @@ fun SplashScreen() {
             text = "Be Smart",
             color = DarkGreen,
             fontSize = 32.sp,
+            fontWeight = FontWeight.Normal,
+            textAlign = TextAlign.Center,
+            modifier = Modifier
+                .fillMaxWidth()
+                .align(Alignment.CenterHorizontally)
+        )
+        Text(
+            text = "@e-TechCollectionApp",
+            color = LightGreen,
+            fontSize = 16.sp,
             fontWeight = FontWeight.Normal,
             textAlign = TextAlign.Center,
             modifier = Modifier
