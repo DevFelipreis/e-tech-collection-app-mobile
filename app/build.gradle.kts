@@ -67,6 +67,7 @@ dependencies {
     implementation("androidx.compose.ui:ui:1.5.0")
     implementation("androidx.compose.material:material:1.5.0")
     implementation("androidx.compose.ui:ui-tooling-preview:1.5.0")
+    implementation(libs.firebase.database.ktx)
     debugImplementation("androidx.compose.ui:ui-tooling:1.5.0")
     implementation("org.jetbrains.kotlin:kotlin-stdlib:1.9.0")
     implementation(libs.androidx.core.ktx)
