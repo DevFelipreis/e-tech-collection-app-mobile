@@ -8,21 +8,40 @@
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@mipmap/ic_launcher"
         android:supportsRtl="true"
-        android:theme="@style/Theme.MyApplication"
+        android:theme="@style/Theme.ETechCollectionApp"
         tools:targetApi="31">
+
         <activity
             android:name=".MainActivity"
             android:exported="true"
-            android:label="@string/app_name"
-            android:theme="@style/Theme.MyApplication">
+            android:theme="@style/Theme.ETechCollectionApp">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+
+        <activity
+            android:name=".LoginActivity"
+            android:exported="true"
+            android:label="Login"
+            android:theme="@style/Theme.ETechCollectionApp" />
+        <activity android:name=".MyCollectionPointActivity" />
+        <activity android:name=".CreateCollectionPointActivity" />
+        <activity android:name=".UpdateProfileActivity" />
+        <activity android:name=".NotificationActivity" />
+        <activity android:name=".FeedActivity" />
+
+
     </application>
 
+    <queries>
+        <package android:name="com.google.android.apps.maps" />
+    </queries>
+
 </manifest>
+
+

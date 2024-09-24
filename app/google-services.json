@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "396531859333",
+    "firebase_url": "https://e-tech-collection-app-default-rtdb.firebaseio.com",
+    "project_id": "e-tech-collection-app",
+    "storage_bucket": "e-tech-collection-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:396531859333:android:249d853e7384bc41eb0eec",
+        "android_client_info": {
+          "package_name": "com.example.etechcollectionapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBPOhGkwvNNWicRQ8eAhX8zGnOIwR3YqGE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
