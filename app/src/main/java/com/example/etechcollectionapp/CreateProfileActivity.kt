@@ -126,7 +126,8 @@ fun CreateProfileScreen(onSubmit: (String, String, String, String, String) -> Un
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Image(
-                painter = painterResource(id = R.drawable.logo),
+                painter = painterResource(id = R.drawable.perfil2
+                ),
                 contentDescription = "Logo",
                 modifier = Modifier
                     .fillMaxWidth()
