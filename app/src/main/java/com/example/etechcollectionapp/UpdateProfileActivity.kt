@@ -134,7 +134,7 @@ fun UpdateProfileScreen(onSubmit: (String, String, String, String, String) -> Un
                     .padding(top = 50.dp)
             )
             Text(
-                text = "trocar foto do perfil",
+                text = "trocar foto de perfil",
                 fontSize = 12.sp,
                 fontWeight = FontWeight.Bold,
                 color = DarkGreen,
