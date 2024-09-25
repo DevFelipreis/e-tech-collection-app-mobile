@@ -34,7 +34,8 @@
         <activity android:name=".UpdateProfileActivity" />
         <activity android:name=".NotificationActivity" />
         <activity android:name=".FeedActivity" />
-         <activity android:name=".CreateProfileActivity" />
+        <activity android:name=".CreateProfileActivity" />
+
 
     </application>
 
