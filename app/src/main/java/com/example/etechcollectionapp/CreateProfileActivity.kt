@@ -138,7 +138,7 @@ fun CreateProfileScreen(onSubmit: (String, String, String, String, String) -> Un
                 modifier = Modifier.fillMaxWidth()
             ) {
                 Text(
-                    text = "Cadastrar",
+                    text = "Editar perfil",
                     fontSize = 32.sp,
                     fontWeight = FontWeight.Bold,
                     color = DarkGreen,
@@ -167,7 +167,7 @@ fun CreateProfileScreen(onSubmit: (String, String, String, String, String) -> Un
                                 )
                                 Spacer(modifier = Modifier.width(8.dp))
                                 if (fullName.isEmpty()) {
-                                    Text("Digite seu nome e sobrenome", color = DarkGreen)
+                                    Text("Editar nome completo", color = DarkGreen)
                                 }
                                 innerTextField()
                             }
@@ -197,14 +197,14 @@ fun CreateProfileScreen(onSubmit: (String, String, String, String, String) -> Un
                         Column {
                             Row(verticalAlignment = Alignment.CenterVertically) {
                                 Icon(
-                                    painter = painterResource(id = android.R.drawable.ic_dialog_email),
+                                    painter = painterResource(id = android.R.drawable.ic_menu_call),
                                     contentDescription = "Email Icon",
                                     tint = DarkGreen,
                                     modifier = Modifier.size(24.dp)
                                 )
                                 Spacer(modifier = Modifier.width(8.dp))
                                 if (email.isEmpty()) {
-                                    Text("Digite seu email", color = DarkGreen)
+                                    Text("Editar número de celular", color = DarkGreen)
                                 }
                                 innerTextField()
                             }
@@ -234,14 +234,14 @@ fun CreateProfileScreen(onSubmit: (String, String, String, String, String) -> Un
                         Column {
                             Row(verticalAlignment = Alignment.CenterVertically) {
                                 Icon(
-                                    painter = painterResource(id = android.R.drawable.ic_menu_call),
+                                    painter = painterResource(id = android.R.drawable.ic_dialog_email),
                                     contentDescription = "Phone Icon",
                                     tint = DarkGreen,
                                     modifier = Modifier.size(24.dp)
                                 )
                                 Spacer(modifier = Modifier.width(8.dp))
                                 if (phoneNumber.isEmpty()) {
-                                    Text("Digite seu número de telefone", color = DarkGreen)
+                                    Text("Editar email", color = DarkGreen)
                                 }
                                 innerTextField()
                             }
@@ -361,7 +361,7 @@ fun CreateProfileScreen(onSubmit: (String, String, String, String, String) -> Un
                             modifier = Modifier.size(24.dp)
                         )
                         Spacer(modifier = Modifier.width(8.dp))
-                        Text("Cadastrar", color = Color.White)
+                        Text("Atualizar", color = Color.White)
                     }
                 }
             }
