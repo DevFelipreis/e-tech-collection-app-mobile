@@ -316,7 +316,7 @@ fun UpdateProfileScreen(onSubmit: (String, String, String, String, String) -> Un
                                 )
                                 Spacer(modifier = Modifier.width(8.dp))
                                 if (password.isEmpty()) {
-                                    Text("Digite sua senha", color = DarkGreen)
+                                    Text("Editar sua senha", color = DarkGreen)
                                 }
                                 innerTextField()
                             }
@@ -354,7 +354,7 @@ fun UpdateProfileScreen(onSubmit: (String, String, String, String, String) -> Un
                                 )
                                 Spacer(modifier = Modifier.width(8.dp))
                                 if (confirmPassword.isEmpty()) {
-                                    Text("Confirme sua senha", color = DarkGreen)
+                                    Text("Confirmar sua senha", color = DarkGreen)
                                 }
                                 innerTextField()
                             }
