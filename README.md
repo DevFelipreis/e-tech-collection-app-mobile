@@ -89,4 +89,6 @@ Este é um aplicativo desenvolvido em Kotlin utilizando Jetpack Compose para a i
 ## Licença
 Este projeto está licenciado sob a Licença MIT - veja o arquivo [LICENSE](LICENSE) para mais detalhes.
 
+
+
 ---
