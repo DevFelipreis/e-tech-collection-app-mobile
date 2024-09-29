@@ -2,6 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -12,6 +16,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ETechCollectionApp"
         tools:targetApi="31">
+
+
 
         <activity
             android:name=".MainActivity"
@@ -29,18 +35,19 @@
             android:exported="true"
             android:label="Login"
             android:theme="@style/Theme.ETechCollectionApp" />
-        <activity android:name=".MyCollectionPointActivity" />
-        <activity android:name=".CreateCollectionPointActivity" />
-        <activity android:name=".UpdateProfileActivity" />
-        <activity android:name=".NotificationActivity" />
-        <activity android:name=".FeedActivity" />
-        <activity android:name=".CreateProfileActivity" />
+        <activity android:name=".MyCollectionPointActivity" android:exported="false" />
+        <activity android:name=".CreateCollectionPointActivity" android:exported="false" />
+        <activity android:name=".UpdateProfileActivity" android:exported="false" />
+        <activity android:name=".NotificationActivity" android:exported="false" />
+        <activity android:name=".FeedActivity" android:exported="false" />
+        <activity android:name=".CreateProfileActivity" android:exported="false" />
 
 
     </application>
 
     <queries>
         <package android:name="com.google.android.apps.maps" />
+
     </queries>
 
 </manifest>

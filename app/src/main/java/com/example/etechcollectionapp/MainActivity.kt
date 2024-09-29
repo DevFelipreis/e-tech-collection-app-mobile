@@ -48,7 +48,7 @@ fun SplashScreen() {
     val context = LocalContext.current
 
     LaunchedEffect(Unit) {
-        delay(1000)
+        delay(500)
         val intent = Intent(context, LoginActivity::class.java)
         context.startActivity(intent)
         (context as ComponentActivity).finish()

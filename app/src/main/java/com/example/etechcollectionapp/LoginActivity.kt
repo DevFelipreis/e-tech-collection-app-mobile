@@ -61,9 +61,11 @@ class LoginActivity : ComponentActivity() {
 fun SetupNavGraph(navController: NavHostController) {
     NavHost(navController = navController, startDestination = "login") {
         composable("login") { LoginScreen(navController) }
-        composable("createProfile") { CreateProfileScreen() }
+        composable("createProfile") { CreateProfileScreen(navController) }
+        composable("feed") { FeedScreen() }
     }
 }
+
 
 @Composable
 fun LoginScreen(navController: NavHostController) {
@@ -195,9 +197,9 @@ fun LoginScreen(navController: NavHostController) {
                                 .addOnCompleteListener{task ->
                                     if(task.isSuccessful){
                                         Toast.makeText(context, "Login bem-sucedido!", Toast.LENGTH_SHORT).show()
-                                        navController.navigate("FeedActivity")
+                                        navController.navigate("feed")
                                     }else {
-                                        Toast.makeText(context, "Falha no login: ${task.exception?.message}", Toast.LENGTH_SHORT).show()
+                                        Toast.makeText(context, "Falha no login: Email ou Senha incorretos", Toast.LENGTH_SHORT).show()
                                     }
                                 }
                         } else {
