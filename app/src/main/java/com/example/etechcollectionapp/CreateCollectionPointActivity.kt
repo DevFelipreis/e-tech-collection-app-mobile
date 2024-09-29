@@ -62,18 +62,27 @@ fun CreateCollectionPointScreen(onSubmit: (String, String, String) -> Unit = { _
         return !(showLocalNameError || showPhoneNumberError || showAddressError || showCepError || showAcceptedItemsError)
     }
 
-    Box(
-        modifier = Modifier
-            .fillMaxSize()
-            .background(Color.White)
-    ) {
+    Scaffold(
+        bottomBar = {
+            Column {
+                BottomNavBar()
+                Box(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(1.dp)
+                        .background(color = LightGreen)
+                )
+            }
+        }
+    ) { innerPadding ->
         Column(
             modifier = Modifier
                 .fillMaxSize()
+                .padding(innerPadding)
                 .padding(16.dp)
                 .padding(bottom = 100.dp),
             horizontalAlignment = Alignment.CenterHorizontally
-        ) {
+        )  {
             Image(
                 painter = painterResource(id = R.drawable.perfil2),
                 contentDescription = "perfil",
@@ -363,15 +372,6 @@ fun CreateCollectionPointScreen(onSubmit: (String, String, String) -> Unit = { _
                 }
             }
         }
-
-        Image(
-            painter = painterResource(id = R.drawable.rodape),
-            contentDescription = "Footer",
-            modifier = Modifier
-                .align(Alignment.BottomCenter)
-                .fillMaxWidth()
-                .padding(top = 16.dp)
-        )
     }
 }
 
@@ -380,4 +380,3 @@ fun CreateCollectionPointScreen(onSubmit: (String, String, String) -> Unit = { _
 fun PreviewCreateCollectionPointScreen() {
     CreateCollectionPointScreen()
 }
-

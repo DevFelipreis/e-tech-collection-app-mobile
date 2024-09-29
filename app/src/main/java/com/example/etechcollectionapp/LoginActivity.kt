@@ -38,12 +38,16 @@ import androidx.compose.ui.text.withStyle
 import android.content.Intent
 import android.content.Context
 import android.net.Uri
+import android.widget.Toast
 import androidx.compose.ui.platform.LocalContext
+import com.google.firebase.FirebaseApp
+import com.google.firebase.auth.FirebaseAuth
 
 
 class LoginActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        FirebaseApp.initializeApp(this)
         setContent {
             EtechCollectionAppTheme {
                 val navController = rememberNavController()
@@ -57,15 +61,18 @@ class LoginActivity : ComponentActivity() {
 fun SetupNavGraph(navController: NavHostController) {
     NavHost(navController = navController, startDestination = "login") {
         composable("login") { LoginScreen(navController) }
-        composable("createProfile") { CreateProfileScreen() }
+        composable("createProfile") { CreateProfileScreen(navController) }
+        composable("feed") { FeedScreen() }
     }
 }
+
 
 @Composable
 fun LoginScreen(navController: NavHostController) {
     val context = LocalContext.current
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
+    val auth = FirebaseAuth.getInstance()
 
 
     Box(
@@ -184,7 +191,22 @@ fun LoginScreen(navController: NavHostController) {
                 Spacer(modifier = Modifier.height(16.dp))
 
                 Button(
-                    onClick = { openUrl(context, "https://chatgpt.com/") },
+                    onClick = {
+                        if(email.isNotEmpty() && password.isNotEmpty()){
+                            auth.signInWithEmailAndPassword(email, password)
+                                .addOnCompleteListener{task ->
+                                    if(task.isSuccessful){
+                                        Toast.makeText(context, "Login bem-sucedido!", Toast.LENGTH_SHORT).show()
+                                        navController.navigate("feed")
+                                    }else {
+                                        Toast.makeText(context, "Falha no login: Email ou Senha incorretos", Toast.LENGTH_SHORT).show()
+                                    }
+                                }
+                        } else {
+                            Toast.makeText(context, "Por favor, preencha todos os campos", Toast.LENGTH_SHORT).show()
+                        }
+
+                    },
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(8.dp),
